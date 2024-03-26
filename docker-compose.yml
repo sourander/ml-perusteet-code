@@ -1,0 +1,31 @@
+version: '3'
+
+name: ml-perusteet-code
+
+services:
+  allure:
+    image: "frankescobar/allure-docker-service"
+    environment:
+      CHECK_RESULTS_EVERY_SECONDS: 5
+      KEEP_HISTORY: 1
+      KEEP_HISTORY_LATEST: 25
+    ports:
+      - "5050:5050"
+    volumes:
+      - ${PWD}/allure-results:/app/allure-results
+      - ${PWD}/allure-reports:/app/default-reports
+
+  tester:
+    container_name: ml-tester-run
+    image: kamk/ml-tester:latest
+    build:
+      context: .
+      dockerfile: tester.Dockerfile
+      args:
+        - PACKAGE_NAME=${PACKAGE_NAME:-ml}
+    # command: bash -c "node utils/enableTests.js && npm test"
+    command: pytest --alluredir=/app/allure-results
+    volumes:
+      - ./allure-results/:/app/allure-results/
+      - ./src/${PACKAGE_NAME:-ml}:/app/ml/
+      - ./tests:/app/tests/

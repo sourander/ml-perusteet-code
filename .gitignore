@@ -1,0 +1,20 @@
+# Virtual environments
+.venv/
+.env/
+venv/
+env/
+
+# Allure and pytest reports
+allure-reports/
+allure-results/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+.mypy_cache/
+.pytest_cache/
+
+# Correct answers (ln -s) and sandbox dir
+src/sandbox/
+src/vastaukset

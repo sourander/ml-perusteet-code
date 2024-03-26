@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+version = "1.0.0"
+name = "ml"
+description = "Machine learning tools implemented in Python... from scratch!"
+readme = "README.md"
+requires-python = ">= 3.10"
+license = {text = "CC BY-NC-ND 4.0"}
+# dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["ml"]
+exclude = ["playground", "sandbox"]
+namespaces = true  # alloe PEP 420 namespace packages (no __init__.py files)
