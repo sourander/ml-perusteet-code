@@ -21,11 +21,30 @@ Tiedostossa `docker-compose.yml` on määritelty palvelu `tester`, joka ajaa tes
 
 ```bash
 # Aseta ympäristömuuttuja
-PACKAGE_NAME=vastaukset 
+export PACKAGE_NAME=vastaukset 
 
-# Docker 
+# Docker
 docker compose up
 
-# Repeat this 
-docker compose up tester
+# Repeat this
+docker compose start tester
 ```
+
+Testitulokset löytyvät samasta palvelimesta, oli kummat tahansa testit ajettu.: http://localhost:5050/latest-report
+
+### Oppilaiden templaattien testaus
+
+```bash
+# If need to check the student templates, simply remove the environment variable
+unset PACKAGE_NAME
+docker compose up tester # Up needed due to changes in the environment variable
+```
+
+### Tuloksien poisto
+
+```bash
+# To clean up results
+docker compose down --volumes
+docker compose up
+```
+

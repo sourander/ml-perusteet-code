@@ -6,17 +6,20 @@ Alla oleva hakemistolistaus kuvaa projektin rakennetta. Piilotetut hakemistot ja
 
 ```
 .
-├── ▶allure-results/       # pytest kirjoittaa tänne raportit
-├── ▶allure-reports/       # Allure API luo raportit tänne
 ├── ▶test/                 # pytest testien määrittelyt - ÄLÄ KOSKE!
+├── ▶data/                 # Säilö ladatuille dataseteille
 ├── src/
 │   ├── ▶vastaukset/         # Opettajan vastaukset. Älä katso :D
+│   ├── ▶scripts/            # Datasettien latausskriptit ja muut apuskriptit 
 │   ├── ml/                 
 │   │   ├── a.py
 │   │   ├── b.py
 │   │   ├── c.py
 │   │   └── ▶a_module/
-│   └-- playground/
+│   ├── sandbox/            # Git-hylätyt Notebook-kokeilut
+│   │   ├── temp.ipynb
+│   │   └── removeme.ipynb
+│   └-- playground/         # Git-pidetyt Notebook-kokeilut
 │       ├── lorem.ipynb
 │       └── ipsum.ipynb
 ├── ml/
@@ -30,9 +33,10 @@ Alla oleva hakemistolistaus kuvaa projektin rakennetta. Piilotetut hakemistot ja
 │      └── helpers.py
 ├── README.md
 ├── requirements.txt       # Python-paketit joita sinä tarvitset
-├── requirements-test.txt  # Pytestin tarvitsemat paketit
-├── tester.Dockerfile      # Dockerfile pytestiä varten
-└── docker-compose.yml     # Docker-compose tiedosto (tester ja Allure API)
+├── requirements-test.txt  # Pytest - ÄLÄ KOSKE!
+├── pytest.ini             # Pytest - ÄLÄ KOSKE!
+├── tester.Dockerfile      # Pytest - ÄLÄ KOSKE!
+└── docker-compose.yml     # Docker Compose Project
 ```
 
 ## Koodin suorittaminen
@@ -67,10 +71,19 @@ Koodi on kirjoitettu siten, että osa koodista on paikoillaan `src/ml/`-kansion 
 * Tee seuraavaa Game Loop -hengessä:
     * Lue testitulos
     * Muokkaa tai kirjoita koodia
-    * Aja testit (`docker compose up tester`)
+        * Hox! Useimmissa skripteissä tunnistat muokattavat kohdat kommentista: `# IMPLEMENT ...`
+    * Aja testit (`docker compose start tester`)
     * Toista kunnes kaikki testit menevät läpi
 * Lopuksi sulje raportointipalvelin (`docker compose down`)
 
-Muista myös dokumentoida työsi, kirjoittaa oppimispäiväkirjaa ja tehdä muut tehtävään liittyvät tehtävät. Ethän unohda myöskään versionhallintaa!
+Muista dokumentoida työsi, kirjoittaa oppimispäiväkirjaa ja tehdä muut tehtävään liittyvät tehtävät. Ethän unohda myöskään versionhallintaa!
 
-Huomaathan, että testitulokset (allure-reports/ ja allure-results/) eivät ole versionhallinnassa. Mikäli haluat ne sinne, muokkaa .gitignore-tiedostoa.
+## Tarvittavat datasetit
+
+Kurssin harjoituksiin käytetään datasettejä, jotka voi ladata joko käsin tai ajamalla `scripts/`-kansion `download_datasets.py`-tiedosto. Datasetit ladataan `./datasets/`-kansioon.
+
+Alla katalogi näistä:
+
+| Datasetti | Lähdetieto          | Lisenssi  |
+| --------- | ------------------- | --------- |
+| Set name  | Link to description | BY-NC 4.0 |

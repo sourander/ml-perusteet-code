@@ -12,20 +12,25 @@ services:
     ports:
       - "5050:5050"
     volumes:
-      - ${PWD}/allure-results:/app/allure-results
-      - ${PWD}/allure-reports:/app/default-reports
+      - allure-results:/app/allure-results
+      - allure-reports:/app/default-reports
 
   tester:
     container_name: ml-tester-run
     image: kamk/ml-tester:latest
+    environment:
+      PYTHONPYCACHEPREFIX: /app/.python_docker_cache
     build:
       context: .
       dockerfile: tester.Dockerfile
       args:
         - PACKAGE_NAME=${PACKAGE_NAME:-ml}
-    # command: bash -c "node utils/enableTests.js && npm test"
     command: pytest --alluredir=/app/allure-results
     volumes:
-      - ./allure-results/:/app/allure-results/
+      - allure-results:/app/allure-results
       - ./src/${PACKAGE_NAME:-ml}:/app/ml/
       - ./tests:/app/tests/
+
+volumes:
+  allure-results:
+  allure-reports:
