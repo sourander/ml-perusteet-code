@@ -1,4 +1,5 @@
 from collections import defaultdict as dd
+from math import prod
 
 # Helper lambda function
 argmax = lambda values: values.index(max(values))
@@ -46,14 +47,14 @@ class NaiveBayes:
         assert all([isinstance(d[0], str) for d in dataset]), "The first element in each tuple must be a string"
         assert all([isinstance(d[1], int) for d in dataset]), "The second element in each tuple must be an integer"
 
-    def fit(self, dataset:tuple[str, int]):
+    def fit(self, dataset:tuple[str, int], smoothing=0.5):
         
         # Validate the dataset
         self.validate_dataset(dataset)
 
         self.n = len(dataset)
-        self.word_counts = NaiveBayes.count_words(dataset, self.preprocess_word)
-        self.n_class = NaiveBayes.count_sentences_by_y(dataset)
+        self.word_counts = self.count_words(dataset, self.preprocess_word)
+        self.n_class = self.count_sentences_by_y(dataset)
 
         # Calculate priors
         for label in self.LABELS:
@@ -62,10 +63,14 @@ class NaiveBayes:
         # Calculate word likelihoods
         for word in self.word_counts:
             for label in self.LABELS:
-                self.word_likelihoods[word][label] = self.word_counts[word][label] / self.n_class[label]
+                self.word_likelihoods[word][label] = (
+                    (self.word_counts[word][label] + smoothing) 
+                    / 
+                    (self.n_class[label] + 2*smoothing)
+                )
 
     def predict(self, evidence:str, verbose=True):
-        # Argmax_y P(y) * SUM(P(x_i | y))
+        """ Argmax_y P(y) * PROD(P(x_i | y)) """
         predictions: list[float] = [
             None, # IMPLEMENT the formula here for class 0
             None  # IMPLEMENT the formula here for class 1
@@ -74,8 +79,7 @@ class NaiveBayes:
             print(f"The given evidence is {self.LABEL_NAMES[argmax(predictions)]} ({max(predictions):.2f} > {min(predictions):.2f})")
         
         return self.LABELS[argmax(predictions)]
-    
-    
+
 if __name__ == "__main__":
     DATASET = [
         ("free viagra now", 1),                 # Spam

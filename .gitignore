@@ -21,3 +21,6 @@ src/vastaukset
 
 # Datasets
 data/
+
+# OS-specific files
+.DS_Store
