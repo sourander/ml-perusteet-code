@@ -17,11 +17,12 @@ def test_word_processor():
 def test_bayes_positive():
     nb = NaiveBayes()
     nb.fit([
-        ("Viagra Viagra now", 1),      # Spam
-        ("Now now Viagra", 1),         # Spam
-        ("Nospam nospam nospam", 0),
-        ("Egg egg egg egg", 0),
-        ("ham ham ham ham", 0),
+        ("free viagra now", 1),                 # Spam
+        ("viagra for a limited time only", 1),  # Spam
+        ("a game of golf tomorrow", 0),
+        ("office movie night cancelled", 0),
+        ("tldr newsletter", 0),
+        ("a cat for sale", 0),
     ])
     assert nb.predict("free viagra movie") == 1
 
@@ -34,4 +35,4 @@ def test_bayes_negative():
         ("One little duck", 0),
         ("No little ducks", 0),
     ])
-    assert nb.predict("duck ducks") == 0
+    assert nb.predict("duck for dinner") == 0

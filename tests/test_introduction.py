@@ -2,8 +2,6 @@ import os
 import importlib
 import allure
 
-from ml import kissa
-
 parent_suite = "Lesson 00: Introduction to Pytest and Allure"
 
 @allure.title("True is True")

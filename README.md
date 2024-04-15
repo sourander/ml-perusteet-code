@@ -60,21 +60,23 @@ Paketti asennetaan, jotta se on käytettävissä mistä tahansa kansiosta. Täm�
 
 ## Kuinka testata
 
-Koodi on kirjoitettu siten, että osa koodista on paikoillaan `src/ml/`-kansion alaisuudessa, mutta osa koodista tulee kirjoittaa itse. Testit on kirjoitettu siten, että ne testaavat koodin tärkeimmän toiminnallisuuden. Siispä tyypillisen luennon jälkeen tehtäväsi on:
+Koodi on kirjoitettu siten, että osa koodista on paikoillaan `src/ml/`-kansion alaisuudessa, mutta osa koodista tulee kirjoittaa itse. Kyseiset kohdat esitellään oppitunnilla, ja lisäksi tunnistat ne yleisesti koodista iskusanan `IMPLEMENT` läsnäolosta. Mikäli olet epävarma, mitä sinun tulee tehdä, kysy! Testit on kirjoitettu siten, että ne testaavat koodin oppilaiden toteuttaman osuuden. Ethän käytä testejä malliesimerkkinä testaamisesta.
 
-* Lue tehtävänanto (Moodle/Youtube/Muu)
-* Käynnistä Allure (`docker compose up -d`)
-    * Avaa selaimessa [Allure UI (localhost:5050)](http://localhost:5050/latest-report)
-    * Etsi luentoon liittyvät testit
-        * Suites => `Lesson n: ...`
-    * Testit ovat sinulle TODO-lista
-* Tee seuraavaa Game Loop -hengessä:
-    * Lue testitulos
-    * Muokkaa tai kirjoita koodia
-        * Hox! Useimmissa skripteissä tunnistat muokattavat kohdat kommentista: `# IMPLEMENT ...`
-    * Aja testit (`docker compose start tester`)
-    * Toista kunnes kaikki testit menevät läpi
-* Lopuksi sulje raportointipalvelin (`docker compose down`)
+Tee siis näin:
+
+```bash
+# Käynnistä Allure
+# ja navigoi: http://localhost:5050/latest-report
+# ja etsi luentoon liittyvät testit (Lesson N: ...)
+docker compose up -d
+
+# Tee muutoksia koodiin ja aja testit.
+# Toista tarvittaessa.
+docker compose start tester
+
+# Lopuksi sulje Allure
+docker compose down
+```
 
 Muista dokumentoida työsi, kirjoittaa oppimispäiväkirjaa ja tehdä muut tehtävään liittyvät tehtävät. Ethän unohda myöskään versionhallintaa!
 

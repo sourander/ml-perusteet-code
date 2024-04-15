@@ -24,7 +24,7 @@ Tiedostossa `docker-compose.yml` on määritelty palvelu `tester`, joka ajaa tes
 export PACKAGE_NAME=vastaukset 
 
 # Docker
-docker compose up
+docker compose up -d
 
 # Repeat this
 docker compose start tester

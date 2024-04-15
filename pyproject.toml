@@ -13,6 +13,6 @@ license = {text = "CC BY-NC-ND 4.0"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["ml"]
+include = ["ml", "vastaukset"]
 exclude = ["playground", "sandbox", "scripts"]
 namespaces = true  # alloe PEP 420 namespace packages (no __init__.py files)
