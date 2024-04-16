@@ -32,12 +32,18 @@ docker compose start tester
 
 Testitulokset löytyvät samasta palvelimesta, oli kummat tahansa testit ajettu.: http://localhost:5050/latest-report
 
-### Oppilaiden templaattien testaus
+### Ympäristömuuttujan vaihtuessa
+
+Pelkkä `docker compose start tester` ei riitä, koska ympäristömuuttujaa ei ole päivitetty. Täytyy ajaa `docker compose up -d` uudelleen.
 
 ```bash
-# If need to check the student templates, simply remove the environment variable
-unset PACKAGE_NAME
-docker compose up tester # Up needed due to changes in the environment variable
+# If need to check the student templates
+# Or go back to the teacher's answers
+unset PACKAGE_NAME            # This
+export PACKAGE_NAME=student   # or this
+
+# And then
+docker compose up -d
 ```
 
 ### Tuloksien poisto
