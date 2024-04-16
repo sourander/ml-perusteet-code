@@ -28,8 +28,9 @@ def test_sample_without_replacement():
 def test_train():
     data = [
         (1, 19.2, 1), 
-        (1, 19.4, 1), 
-        (1, 12.7, 1), 
+        (1, 19.4, 1),
+        (0, 19.3, 1), 
+        (1, 12.7, 1),
         (0, 12.1, 0), 
         (0, 13.1, 0),
     ]
@@ -37,14 +38,16 @@ def test_train():
     model = rf.RandomForest(num_trees)
     model.train(data)
     assert len(model.trees) == num_trees
+    assert isinstance(model.trees[0], rf.dt.Decision), "The first Node in the forest should be a Decision Node, not a Leaf"
 
 @allure.title("Predict using Random Forest")
 @allure.parent_suite(parent_suite)
 def test_predict():
     data = [
         (1, 19.2, 1), 
-        (1, 19.4, 1), 
-        (1, 12.7, 1), 
+        (1, 19.4, 1),
+        (0, 19.3, 1), 
+        (1, 12.7, 1),
         (0, 12.1, 0), 
         (0, 13.1, 0),
     ]
@@ -54,5 +57,6 @@ def test_predict():
     sample = (1, 19.3)
     result = model.predict(sample)
     assert result == 1
+    assert isinstance(model.trees[0], rf.dt.Decision), "The first Node in the forest should be a Decision Node, not a Leaf"
 
 

@@ -21,7 +21,7 @@ def sample_without_replacement(data, n):
 class RandomForest:
     def __init__(self, num_trees, verbose=False):
         self.num_trees = num_trees
-        self.trees = []
+        self.trees: dt.Node = []
         self.verbose = verbose
 
     def train(self, data: list[tuple], replacement=True):

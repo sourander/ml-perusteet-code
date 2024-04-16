@@ -168,18 +168,12 @@ def build_tree(data, depth=0, **kwargs):
         A nested helper function to create a Leaf node
         on early exit with a given reason.
         """
-        early_exitee =  Leaf(
+        return Leaf(
             n_samples=len(data),
-            label=max(
-                set([row[-1] for row in data]), key=[row[-1] for row in data].count
-            ),
             depth=depth,
-            exit_reason=reason,
+            label=max(set([row[-1] for row in data]), key=[row[-1] for row in data].count),
+            exit_reason=None # IMPLEMENT adding the reason
         )
-        # The Root level should not be a Leaf but a Decision
-        if depth == 0:
-            raise ValueError("Root level should not be a Leaf")
-        return early_exitee
 
     # Default values
     max_depth = kwargs.get("max_depth", 5)
@@ -249,6 +243,10 @@ def visualize_tree(node: Node, indent=0):
 
 def predict(node: Node, input_values):
     while True:
+        # If we have reached a leaf, return the label
+        if isinstance(node, Leaf):
+            return node.label
+        
         if node.ig.column_type == "binary":
             if input_values[node.ig.column_index] == 0:
                 node = node.left
@@ -260,9 +258,7 @@ def predict(node: Node, input_values):
             else:
                 node = node.right
 
-        # If we have reached a leaf, return the label
-        if isinstance(node, Leaf):
-            return node.label
+
 
 
 def read_jsonl(file_path: Path):
@@ -301,7 +297,7 @@ if __name__ == "__main__":
 
     # Test the prediction with one sample
     print("\n==== Manual prediction begins ====\n")
-    input_values = [0, 1, 10.63]
+    input_values = (0, 1, 10.63)
     print(f"Prediction for {input_values}: {predict(tree_sample, input_values)}")
 
     # Run against the test data
