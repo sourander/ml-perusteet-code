@@ -2,21 +2,9 @@ import os
 import importlib
 import allure
 import math
-
 import ml.k_nearest as knn
 
-parent_suite = "Lesson 05: k-Nearest Neighbors"
-
-@allure.title("Eucledian distance")
-@allure.parent_suite(parent_suite)
-def test_euclidean_distance():
-    p = [1, 2]
-    q = [3, 4]
-    assert knn.kNN.euclidean_distance(p, q) == math.dist(p, q)
-
-    p = [1, 2, 3, 4]
-    q = [2, 2, 4, 4]
-    assert knn.kNN.euclidean_distance(p, q) == math.dist(p, q)
+from test_config import lesson_05 as parent_suite
 
 @allure.title("Majority vote")
 @allure.parent_suite(parent_suite)

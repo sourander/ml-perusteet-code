@@ -1,6 +1,8 @@
 from collections import defaultdict
 from dataclasses import dataclass
 
+from ml.utils.math import euclidean_distance
+
 @dataclass
 class Point:
     features: tuple[float|int]
@@ -21,11 +23,6 @@ class kNN:
         self.points = [
             # IMPLEMENT each Point() here
         ]
-
-    @staticmethod
-    def euclidean_distance(p, q) -> float:
-        # IMPLEMENT with native Python
-        return None
     
     @staticmethod
     def majority_vote(neighbors:list[Neighbor]):
@@ -37,7 +34,7 @@ class kNN:
         """A method for predicting a label for given of features"""
         neighbors: list[Neighbor] = []
         for point in self.points:
-            distance = self.euclidean_distance(point.features, features)
+            distance = euclidean_distance(point.features, features)
             neighbors.append(Neighbor(distance, point.label))
         neighbors = sorted(neighbors, key=lambda x: x.distance)
         k_nearest = neighbors[:self.k]

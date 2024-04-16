@@ -3,8 +3,7 @@ import importlib
 import allure
 
 import ml.random_forest as rf
-
-parent_suite = "Lesson 04: Random Forest"
+from test_config import lesson_04 as parent_suite
 
 @allure.title("Bagging (with Replacement)")
 @allure.parent_suite(parent_suite)

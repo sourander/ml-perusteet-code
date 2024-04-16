@@ -1,0 +1,7 @@
+lesson_00 = "Lesson 00: Introduction to Pytest and Allure"
+lesson_01 = "Lesson 01: Do-It-Yourself Vector"
+lesson_02 = "Lesson 02: Naive Bayes"
+lesson_03 = "Lesson 03: Decision Trees"
+lesson_04 = "Lesson 04: Random Forest"
+lesson_05 = "Lesson 05: k-Nearest Neighbors"
+lesson_06 = "Lesson 06: k-Means"

@@ -2,7 +2,7 @@ import allure
 
 from ml.vector import Vector
 
-parent_suite = "Lesson 01: Do-It-Yourself Vector"
+from test_config import lesson_01 as parent_suite
 
 @allure.title("Vector Addition")
 @allure.parent_suite(parent_suite)
