@@ -1,5 +1,23 @@
 from __future__ import annotations
 
+def mean(x: Vector):
+    return sum(x) / len(x)
+
+def variance(x: Vector, ddof=1):
+    return sum((x - mean(x))**2) / (len(x) - ddof)
+
+def std(x: Vector):
+    return variance(x, ddof=0) ** 0.5
+
+def center(x: Vector):
+    return x - mean(x)
+
+def z_score(x: Vector):
+    return center(x) / std(x)
+
+def min_max(x: Vector):
+    return (x - min(x)) / (max(x) - min(x))
+
 class Vector:
     """
     A simple class to represent a vector in n-dimensional space.
@@ -28,20 +46,79 @@ class Vector:
             raise ValueError("Vectors must have the same length")
         result = [x + y for x, y in zip(a.elements, b.elements)]
         return Vector(*result)
+    
+    @staticmethod
+    def sub(a: Vector, b: Vector) -> Vector:
+        """
+        Subtracts two vectors element-wise.
+        """
+        if len(a) != len(b):
+            raise ValueError("Vectors must have the same length")
+        result = [x - y for x, y in zip(a.elements, b.elements)]
+        return Vector(*result)
 
     @staticmethod
     def add_scalar(a, b):
         result = [x + b for x in a.elements]
         return Vector(*result)
+    
+    @staticmethod
+    def sub_scalar(a, b):
+        result = [x - b for x in a.elements]
+        return Vector(*result)
+    
+    def _check_len_match(self, other: Vector):
+        if len(self) != len(other):
+            raise ValueError("Vectors must have the same length")
 
     def __add__(self, other):
         if isinstance(other, Vector):
+            self._check_len_match(other)
             return self.add(self, other)
         # If int or float
         if isinstance(other, (int, float)):
             return self.add_scalar(self, other)
         else:
             raise NotImplementedError(f"Addition not supported for Vector and {type(other)}")
+        
+    def __radd__(self, other):
+        return self.__add__(other)
+        
+    def __sub__(self, other):
+        if isinstance(other, Vector):
+            self._check_len_match(other)
+            return self.sub(self, other)
+        if isinstance(other, (int, float)):
+            return self.sub_scalar(self, other)
+        else:
+            raise NotImplementedError(f"Subtraction not supported for Vector and {type(other)}")
+        
+    def __rsub__(self, other):
+        return self.__sub__(other)
+        
+    def __truediv__(self, other):
+        if isinstance(other, (int, float)):
+            result = [x / other for x in self.elements]
+            return Vector(*result)
+        else:
+            raise NotImplementedError(f"Division not supported for Vector and {type(other)}")
+        
+    def __mul__(self, other):
+        if isinstance(other, (int, float)):
+            result = [x * other for x in self.elements]
+            return Vector(*result)
+        else:
+            raise NotImplementedError(f"Multiplication not supported for Vector and {type(other)}")
+        
+    def __rmul__(self, other):
+        return self.__mul__(other)
+        
+    def __pow__(self, other):
+        if isinstance(other, (int, float)):
+            result = [x ** other for x in self.elements]
+            return Vector(*result)
+        else:
+            raise NotImplementedError(f"Power not supported for Vector and {type(other)}")
     
     def __len__(self):
         return len(self.elements)
@@ -53,6 +130,12 @@ class Vector:
 
     def __iter__(self):
         return iter(self.elements)
+    
+    def __repr__(self):
+        return f"Vector({', '.join(map(str, self.elements))})"
+    
+    def __str__(self):
+        return f"({', '.join(map(str, self.elements))})"
 
 if __name__ == "__main__":
     import doctest
