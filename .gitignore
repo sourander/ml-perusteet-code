@@ -14,6 +14,7 @@ __pycache__/
 *$py.class
 .mypy_cache/
 .pytest_cache/
+.ipynb_checkpoints/
 
 # Correct answers (ln -s) and sandbox dir
 src/sandbox/

@@ -45,7 +45,7 @@ Tarvitset virtuaaliympäristön. Suosi Pythonin versiota 3.11.x.
 
 ```bash
 # Luo virtuaaliympäristö
-python -m venv --copies .venv
+python -m venv .venv
 
 # Asenna tarvittavat paketit
 pip install -r requirements.txt
