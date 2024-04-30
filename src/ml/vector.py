@@ -32,8 +32,24 @@ class Vector:
         >>> v2 = Vector(4, 5, 6)
         >>> v + v2
         Vector(5, 7, 9)
-    
+        >>> v + 1
+        Vector(2, 3, 4)
+        >>> 1 + v
+        Vector(2, 3, 4)
+        >>> v - v2
+        Vector(-3, -3, -3)
+        >>> v - 1
+        Vector(0, 1, 2)
+        >>> 1 - v
+        Vector(0, 1, 2)
+        >>> v / 2
+        Vector(0.5, 1.0, 1.5)
+        >>> v * v2
+        Vector(4, 10, 18)
+        >>> v @ v2
+        32
     """
+    
     def __init__(self, *args: int|float):
         self.elements = list(args)
 
@@ -44,7 +60,7 @@ class Vector:
         """
         if len(a) != len(b):
             raise ValueError("Vectors must have the same length")
-        result = [x + y for x, y in zip(a.elements, b.elements)]
+        result = [x + y for x, y in zip(a, b)]
         return Vector(*result)
     
     @staticmethod
@@ -54,7 +70,7 @@ class Vector:
         """
         if len(a) != len(b):
             raise ValueError("Vectors must have the same length")
-        result = [x - y for x, y in zip(a.elements, b.elements)]
+        result = [x - y for x, y in zip(a, b)]
         return Vector(*result)
 
     @staticmethod
@@ -105,17 +121,28 @@ class Vector:
         
     def __mul__(self, other):
         if isinstance(other, (int, float)):
-            result = [x * other for x in self.elements]
+            result = [x * other for x in self]
+            return Vector(*result)
+        if isinstance(other, Vector):
+            self._check_len_match(other)
+            result = [x * y for x, y in zip(self, other)]
             return Vector(*result)
         else:
             raise NotImplementedError(f"Multiplication not supported for Vector and {type(other)}")
         
     def __rmul__(self, other):
         return self.__mul__(other)
+    
+    def __matmul__(self, other):
+        if isinstance(other, Vector):
+            self._check_len_match(other)
+            return sum(self * other)
+        else:
+            raise NotImplementedError(f"Matrix multiplication not supported for Vector and {type(other)}")
         
     def __pow__(self, other):
         if isinstance(other, (int, float)):
-            result = [x ** other for x in self.elements]
+            result = [x ** other for x in self]
             return Vector(*result)
         else:
             raise NotImplementedError(f"Power not supported for Vector and {type(other)}")

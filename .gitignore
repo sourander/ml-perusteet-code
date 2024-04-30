@@ -24,3 +24,8 @@ data/
 
 # OS-specific files
 .DS_Store
+
+# Anything in data folder, EXCEPT the tiny course related sets
+data/*
+!data/bike_or_car/
+!data/clustering/
