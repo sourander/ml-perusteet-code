@@ -6,31 +6,17 @@ Alla oleva hakemistolistaus kuvaa projektin rakennetta. Piilotetut hakemistot ja
 
 ```
 .
-├── ▶test/                 # pytest testien määrittelyt - ÄLÄ KOSKE!
-├── ▶data/                 # Säilö ladatuille dataseteille
+├── ▶tests/                  # Katsoa saa, mutta ÄLÄ KOSKE!
+├── ▶data/                   # Datasetit (> 10 MB ei versionhallintaan!)
 ├── src/
-│   ├── ▶vastaukset/         # Opettajan vastaukset. Älä katso :D
 │   ├── ▶scripts/            # Datasettien latausskriptit ja muut apuskriptit 
 │   ├── ml/                 
 │   │   ├── a.py
-│   │   ├── b.py
-│   │   ├── c.py
-│   │   └── ▶a_module/
-│   ├── sandbox/            # Git-hylätyt Notebook-kokeilut
-│   │   ├── temp.ipynb
-│   │   └── removeme.ipynb
-│   └-- playground/         # Git-pidetyt Notebook-kokeilut
-│       ├── lorem.ipynb
-│       └── ipsum.ipynb
-├── ml/
-│   ├── some.py
-│   ├── code.py
-│   ├── here.py
-│   ├── ▶modularize/
-│   ├── ▶code/
-│   ├── ▶into/
-│   └── directories/
-│      └── helpers.py
+│   │   └── ▶utils/
+│   ├── playground/          # (Optional) Git-hylkiöt
+│   │   └── practice.ipynb
+│   └-- sandbox/             # Git-pidetyt Jupyter Notebook -tiedostot
+│       └── junk.ipynb
 ├── README.md
 ├── requirements.txt       # Python-paketit joita sinä tarvitset
 ├── requirements-test.txt  # Pytest - ÄLÄ KOSKE!
@@ -58,9 +44,11 @@ pip install -e .
 
 Paketti asennetaan, jotta se on käytettävissä mistä tahansa kansiosta. Tämä on hyödyllistä esimerkiksi `src/sandbox` -kansion Jupyter Notebook -tiedostojen kanssa. Voit käyttää `import ml` -komentoa missä tahansa kansiosta.
 
+Huomaa, että saat lisätä tarvitsemiasi paketteja `requirements.txt`-tiedostoon. Aja tällöin `pip install -r requirements.txt` uudelleen. Älä kuitenkaan lisää mitään `requirements-test.txt`-tiedostoon - testien tulisi pärjätä ilman numpyä, scikit learnia ja muita kirjastoja, sillä tarkoituksena on luoda Python-natiiveja ratkaisija *"from scratch"*.
+
 ## Kuinka testata
 
-Koodi on kirjoitettu siten, että osa koodista on paikoillaan `src/ml/`-kansion alaisuudessa, mutta osa koodista tulee kirjoittaa itse. Kyseiset kohdat esitellään oppitunnilla, ja lisäksi tunnistat ne yleisesti koodista iskusanan `IMPLEMENT` läsnäolosta. Mikäli olet epävarma, mitä sinun tulee tehdä, kysy! Testit on kirjoitettu siten, että ne testaavat koodin oppilaiden toteuttaman osuuden. Ethän käytä testejä malliesimerkkinä testaamisesta.
+Koodi on kirjoitettu siten, että osa koodista on paikoillaan `src/ml/`-kansion alaisuudessa, mutta osa koodista tulee kirjoittaa itse. Kyseiset kohdat esitellään oppitunnilla, ja lisäksi tunnistat ne yleisesti koodista iskusanan `IMPLEMENT` läsnäolosta. Mikäli olet epävarma, mitä sinun tulee tehdä, kysy!
 
 Tee siis näin:
 
