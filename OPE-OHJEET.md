@@ -1,10 +1,12 @@
 # Opettajan ohjeet
 
-## Testien pohjustus
-
 Testit voi ajaa siten, että ne ajetaan "vastaukset"-kansiosta, joka sijaitsee aivan muualla Filesystemissä, ja on tuotuna src/ kansion sisään symbolisena linkkinä.
 
-Huomaa, että testit kuitenkin importtaavat `ml`-moduulista eivätkä noudata `PACKAGE_NAME`-ympäristömuuttujaa. Siispä **testit on pakko ajaa Dockerilla**, kun testaa opettajan vastauksia.
+Huomaa, että testit kuitenkin importtaavat `ml`-moduulista eivätkä noudata `PACKAGE_NAME`-ympäristömuuttujaa. Ympäristömuuttujan trikki hoidetaan Docker Composen bind volumella. Siispä **testit on pakko ajaa Dockerilla**, kun testaa opettajan vastauksia. Toki ne on käytännössä muutenkin, koska Allure-palvelin on kontissa.
+
+## Testien pohjustus
+
+Testit tuodaan tänne `src/vastaukset`-kansioon symbolisena linkkinä. Tämä onnistuu esimerkiksi seuraavasti:
 
 ```bash
 # Luo absoluuttinen polku vastauksiin
@@ -30,7 +32,7 @@ docker compose up -d
 docker compose start tester
 ```
 
-Testitulokset löytyvät samasta palvelimesta, oli kummat tahansa testit ajettu.: http://localhost:5050/latest-report
+Testitulokset löytyvät samasta palvelimesta, oli kummat tahansa testit ajettu: http://localhost:5050/latest-report
 
 ### Ympäristömuuttujan vaihtuessa
 
