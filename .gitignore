@@ -20,9 +20,6 @@ __pycache__/
 src/sandbox/
 src/vastaukset
 
-# Datasets
-data/
-
 # OS-specific files
 .DS_Store
 
