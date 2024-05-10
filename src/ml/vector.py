@@ -35,7 +35,6 @@ class Vector:
     
     def __init__(self, *args: int|float):
         self.elements = list(args)
-        print("Yo")
 
     @staticmethod
     def add(a: Vector, b: Vector) -> Vector:
