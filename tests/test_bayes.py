@@ -1,5 +1,3 @@
-import os
-import importlib
 import allure
 
 from ml.naive_bayes import NaiveBayes

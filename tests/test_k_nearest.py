@@ -1,7 +1,4 @@
-import os
-import importlib
 import allure
-import math
 import ml.k_nearest as knn
 
 from test_config import lesson_05 as parent_suite

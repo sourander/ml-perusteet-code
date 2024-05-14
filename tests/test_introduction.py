@@ -1,5 +1,3 @@
-import os
-import importlib
 import allure
 
 from test_config import lesson_00 as parent_suite

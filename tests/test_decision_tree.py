@@ -1,5 +1,3 @@
-import os
-import importlib
 import allure
 
 import ml.decision_tree as dt

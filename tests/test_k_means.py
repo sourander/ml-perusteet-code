@@ -1,5 +1,3 @@
-import os
-import importlib
 import allure
 
 import ml.k_means as km
