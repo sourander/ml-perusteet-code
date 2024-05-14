@@ -304,9 +304,10 @@ if __name__ == "__main__":
     print("\n==== Test with larger dataset begins ====\n")
     data_train = read_jsonl(Path("data/bike_or_car/293_train.jsonl"))
     data_test = read_jsonl(Path("data/bike_or_car/100_test.jsonl"))
-    tree = build_tree(data, max_depth=3)
+    tree_293 = build_tree(data_train, max_depth=3)
+    visualize_tree(tree_293)
     y = [row[-1] for row in data_test]
-    y_hat = [predict(build_tree(data), row) for row in data_test]
+    y_hat = [predict(tree_293, row) for row in data_test]
     false_positives = sum([a == 0 and b == 1 for a, b in zip(y, y_hat)])
     true_positives = sum([a == 1 and b == 1 for a, b in zip(y, y_hat)])
     false_negatives = sum([a == 1 and b == 0 for a, b in zip(y, y_hat)])

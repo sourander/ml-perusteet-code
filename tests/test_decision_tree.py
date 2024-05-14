@@ -17,6 +17,19 @@ def test_build_tree_uniform_class():
     assert tree.exit_reason == "Uniform class"
     assert tree.label == 1
 
+@allure.title("Tree with Max Depth")
+@allure.description("If the max depth is set to 0, the tree should return a Leaf instantly with the exit reason 'Max depth'.")
+@allure.parent_suite(parent_suite)
+def test_build_tree_max_depth():
+    data = [
+        (1, 1),
+        (0, 1),
+        (1, 0),
+    ]
+    tree = dt.build_tree(data, max_depth=0)
+    assert isinstance(tree, dt.Leaf)
+    assert tree.exit_reason == "Max depth"
+
 @allure.title("Tree with Bike Car Data")
 @allure.parent_suite(parent_suite)
 def test_build_tree_bike_car():
