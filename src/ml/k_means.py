@@ -40,6 +40,16 @@ class kMeans:
     
     @staticmethod
     def mean_coordinates(features: list[list[float]]) -> list[float]:
+        """Compute the mean location of a list of features.
+
+        Parameters:
+        features: 
+          A list of features. (Contents of Point.features)
+        
+        Usage:
+        >>> mean_location([[1, 2], [2, 3], [3, 4]])
+        [2.0, 3.0]
+        """
         # IMPLEMENT 
         return [0] * len(features[0])
     
