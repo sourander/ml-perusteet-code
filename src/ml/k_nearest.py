@@ -1,7 +1,7 @@
 from collections import defaultdict
 from dataclasses import dataclass
 
-from ml.utils.math import euclidean_distance
+from ml.utils.math import euclidean_distance # IMPLEMENT
 
 @dataclass
 class Point:
