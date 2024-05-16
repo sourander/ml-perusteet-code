@@ -39,19 +39,19 @@ class kMeans:
         return [Point(coordinates=None)] * len(data)
     
     @staticmethod
-    def mean_coordinates(features: list[list[float]]) -> list[float]:
-        """Compute the mean location of a list of features.
+    def mean_coordinates(coordinates: list[list[float]]) -> list[float]:
+        """Compute the mean location of a list of coordinates.
 
         Parameters:
-        features: 
-          A list of features. (Contents of Point.features)
+        coordinates: 
+          A list of coordinates. (Contents of Point.coordinates)
         
         Usage:
         >>> mean_location([[1, 2], [2, 3], [3, 4]])
         [2.0, 3.0]
         """
         # IMPLEMENT 
-        return [0] * len(features[0])
+        return [0] * len(coordinates[0])
     
     def assign_cluster(self, point: Point):
         distances = [euclidean_distance(point.coordinates, centroid.coordinates) for centroid in self.centroids]
