@@ -9,13 +9,12 @@ Alla oleva hakemistolistaus kuvaa projektin rakennetta. Piilotetut hakemistot ja
 ├── ▶tests/                  # Katsoa saa, mutta ÄLÄ KOSKE!
 ├── ▶data/                   # Datasetit (> 10 MB ei versionhallintaan!)
 ├── src/
-│   ├── ▶scripts/            # Datasettien latausskriptit ja muut apuskriptit 
-│   ├── ml/                 
+│   ├── ml/                  # Koodi, jota sinun tulee täydentää (IMPLEMENT)
 │   │   ├── a.py
 │   │   └── ▶utils/
-│   ├── playground/          # (Optional) Git-hylkiöt
+│   ├── playground/          # Versionhallitut harjoitustiedostot.
 │   │   └── practice.ipynb
-│   └-- sandbox/             # Git-pidetyt Jupyter Notebook -tiedostot
+│   └-- sandbox/             # (Optional) Git-hylkiöt
 │       └── junk.ipynb
 ├── README.md
 ├── requirements.txt       # Python-paketit joita sinä tarvitset
@@ -70,10 +69,12 @@ Muista dokumentoida työsi, kirjoittaa oppimispäiväkirjaa ja tehdä muut teht�
 
 ## Tarvittavat datasetit
 
-Kurssin harjoituksiin käytetään datasettejä, jotka voi ladata joko käsin tai ajamalla `scripts/`-kansion `download_datasets.py`-tiedosto. Datasetit ladataan `./datasets/`-kansioon.
+Kurssin harjoituksiin käytetään datasettejä, joista osa tulee ladata itse, osa on saatavilla tämän projektin `data/`-kansiossa.
 
-Alla katalogi näistä:
+Alla katalogi `data/`-kansion dataseteistä. Huomaa, että jos lataat datasetteja itse, tulee ne ladata `data/`-kansioon. Muut kansiot kuin alla listatut eivät päädy versionhallintaan (ks. `.gitignore`-tiedosto).
 
-| Datasetti | Lähdetieto          | Lisenssi  |
-| --------- | ------------------- | --------- |
-| Set name  | Link to description | BY-NC 4.0 |
+| Datasetti   | Lähdetieto                                                                                  | Lisenssi  |
+| ----------- | ------------------------------------------------------------------------------------------- | --------- |
+| bike_or_not | Manually generated random data.                                                             | Public    |
+| clustering  | Scikit-generated blob data.                                                                 | Public    |
+| y_skills    | [Data in Brief Vol 54](https://www.sciencedirect.com/science/article/pii/S2352340924003652) | BY-NC 4.0 |
