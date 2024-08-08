@@ -66,6 +66,9 @@ class Vector:
         result = [x - b for x in a.elements]
         return Vector(*result)
     
+    def concat(self, b: Vector) -> Vector:
+        return Vector(*self.elements, *b.elements)
+    
     def _check_len_match(self, other: Vector):
         if len(self) != len(other):
             raise ValueError("Vectors must have the same length")
@@ -140,6 +143,12 @@ class Vector:
 
     def __iter__(self):
         return iter(self.elements)
+
+    def __getitem__(self, index):
+        return self.elements[index]
+    
+    def __setitem__(self, index, value):
+        self.elements[index] = value
     
     def __repr__(self):
         return f"Vector({', '.join(map(str, self.elements))})"

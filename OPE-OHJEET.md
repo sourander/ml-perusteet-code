@@ -39,10 +39,8 @@ Testitulokset löytyvät samasta palvelimesta, oli kummat tahansa testit ajettu:
 Pelkkä `docker compose start tester` ei riitä, koska ympäristömuuttujaa ei ole päivitetty. Täytyy ajaa `docker compose up -d` uudelleen.
 
 ```bash
-# If need to check the student templates
-# Or go back to the teacher's answers
-unset PACKAGE_NAME            # This
-export PACKAGE_NAME=student   # or this
+# Delete the environment variable
+unset PACKAGE_NAME
 
 # And then
 docker compose up -d
