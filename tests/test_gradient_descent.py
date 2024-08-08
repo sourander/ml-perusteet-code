@@ -1,5 +1,4 @@
 import allure
-import random
 
 from test_config import suite_08 as parent_suite
 from ml.gradient_descent import GradientDescent
