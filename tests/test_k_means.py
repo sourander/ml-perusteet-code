@@ -2,7 +2,7 @@ import allure
 
 import ml.k_means as km
 
-from test_config import lesson_06 as parent_suite
+from test_config import suite_06 as parent_suite
 
 @allure.title("Data to Points")
 @allure.description("""

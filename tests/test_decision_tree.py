@@ -2,7 +2,7 @@ import allure
 
 import ml.decision_tree as dt
 
-from test_config import lesson_03 as parent_suite
+from test_config import suite_03 as parent_suite
 
 @allure.title("Tree with Uniform Class")
 @allure.description("A simple, uniform test set should result in a Leaf node with a uniform class.")

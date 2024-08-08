@@ -6,7 +6,7 @@ import allure
 docutils = pytest.importorskip("docutils")
 
 
-parent_suite = "Lesson 99: Ideas for the Future"
+parent_suite = "Suite 99: Ideas for the Future"
 
 @allure.title("This is skipped; docutils is not installed.")
 @allure.parent_suite(parent_suite)

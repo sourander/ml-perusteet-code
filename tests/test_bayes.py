@@ -2,7 +2,7 @@ import allure
 
 from ml.naive_bayes import NaiveBayes
 
-from test_config import lesson_02 as parent_suite
+from test_config import suite_02 as parent_suite
 
 @allure.title("Test Word Processor")
 @allure.description("The word processor should lowercase the word and remove any non-alphanumeric characters")

@@ -1,7 +1,7 @@
 import allure
 import ml.k_nearest as knn
 
-from test_config import lesson_05 as parent_suite
+from test_config import suite_05 as parent_suite
 
 @allure.title("Majority vote")
 @allure.parent_suite(parent_suite)
