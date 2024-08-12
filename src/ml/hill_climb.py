@@ -57,7 +57,7 @@ class HillClimb:
     def _add_bias(self, X):
         return [[1.0] + list(x) for x in X]
 
-    def fit(self, X: list[list|tuple], y: list):
+    def fit(self, X: list[list[float]], y: list[float]):
         # Add bias to data
         X = self._add_bias(X)
         self.dimensions = len(X[0])
