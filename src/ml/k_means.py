@@ -168,16 +168,18 @@ if __name__ == "__main__":
     # Check that at the centroids are around the original locations
     for centroid in model.centroids:
         for ref in reference_locations:
+
             # Check that the distance is less than 0.5
             # and then pop out the reference location
-            dist = model.euclidean_distance(Point(coordinates=ref), centroid)
+            dist = euclidean_distance(ref, centroid.coordinates)
             if dist < 1.5:
                 reference_locations.remove(ref)
                 print(f"Centroid {centroid.id} is around {ref} with distance {dist}")
                 continue
 
+
     # If all reference locations are popped out, then the test is passed
-    assert not reference_locations
+    assert not reference_locations, f"Reference location {reference_locations} did not find a match"
 
     # You can predict any number of data points
     test_data = [[1, 1, 1], [-1, -1, -1], [-1, 1, 1]]
