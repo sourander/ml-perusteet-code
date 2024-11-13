@@ -21,7 +21,8 @@ class kNN:
     def fit(self, data: list):
         """A method for fitting a dataset where the last column is the label"""
         self.points = [
-            # IMPLEMENT each Point() here
+            # IMPLEMENT
+            # Point(features=???, label=???) for point in data
         ]
     
     @staticmethod
