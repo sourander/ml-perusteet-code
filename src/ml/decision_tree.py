@@ -39,6 +39,9 @@ def entropy(X) -> float:
 
 
 def class_probabilities(column_values) -> list[float]:
+    n = len(column_values)
+    if n == 0:
+        return [0, 0]
     # IMPLEMENT: Class probabilities
     #  Returning e.g. [0.5, 0.5] for a binary column with equal number of 0s and 1s
     return [None, None]
@@ -304,7 +307,7 @@ if __name__ == "__main__":
     print("\n==== Test with larger dataset begins ====\n")
     data_train = read_jsonl(Path("data/bike_or_car/293_train.jsonl"))
     data_test = read_jsonl(Path("data/bike_or_car/100_test.jsonl"))
-    tree_293 = build_tree(data_train, max_depth=3)
+    tree_293 = build_tree(data_train, max_depth=5, verbose=True)
     visualize_tree(tree_293)
     y = [row[-1] for row in data_test]
     y_hat = [predict(tree_293, row) for row in data_test]

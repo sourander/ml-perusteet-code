@@ -72,7 +72,7 @@ class NaiveBayes:
     def predict(self, evidence:str, verbose=True):
         """ Argmax_y P(y) * PROD(P(x_i | y)) """
         predictions: list[float] = [
-            None, # IMPLEMENT the formula here for class 0
+            self.priors[0] * prod([self.word_likelihoods[word][0] for word in evidence.split()]),
             None  # IMPLEMENT the formula here for class 1
         ]
         if verbose:
