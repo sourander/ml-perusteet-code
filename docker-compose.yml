@@ -15,18 +15,17 @@ services:
 
   tester:
     container_name: ml-tester-run
-    image: kamk/ml-tester:latest
     environment:
-      PYTHONPYCACHEPREFIX: /app/.python_docker_cache
+      - PYTHONDONTWRITEBYTECODE=1 # Don't write .pyc files nor __pycache__
     build:
       context: .
       dockerfile: tester.Dockerfile
-      args:
-        - PACKAGE_NAME=${PACKAGE_NAME:-ml}
-    command: pytest --alluredir=/app/allure-results
+    command: >
+      bash -c "uv sync --only-dev &&
+      uv run pytest --alluredir=/app/allure-results"
     volumes:
       - allure-results:/app/allure-results
-      - ./src/${PACKAGE_NAME:-ml}:/app/ml/
+      - ./src/${PACKAGE_NAME:-ml}:/app/src/ml/
       - ./tests:/app/tests/
 
 volumes:

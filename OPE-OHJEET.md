@@ -51,6 +51,6 @@ docker compose up -d
 ```bash
 # To clean up results
 docker compose down --volumes
-docker compose up
+docker compose up -d
 ```
 

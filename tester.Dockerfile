@@ -1,13 +1,7 @@
-FROM python:3.11
-
-ARG PACKAGE_NAME
+FROM ghcr.io/astral-sh/uv:python3.13-bookworm
 
 # Set the working directory in the container
 WORKDIR /app
 
 # Copy test dependencies
-COPY requirements-test.txt .
-COPY pytest.ini .
-
-# Install any needed packages specified in requirements-test.txt
-RUN pip install --no-cache-dir -r requirements-test.txt
+COPY pyproject.toml pytest.ini README.md ./
