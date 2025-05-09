@@ -4,4 +4,4 @@ FROM ghcr.io/astral-sh/uv:python3.13-bookworm
 WORKDIR /app
 
 # Copy test dependencies
-COPY pyproject.toml pytest.ini README.md ./
+COPY pyproject.toml README.md ./

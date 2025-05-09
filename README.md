@@ -17,33 +17,33 @@ Alla oleva hakemistolistaus kuvaa projektin rakennetta. Piilotetut hakemistot ja
 │   └-- sandbox/             # (Optional) Git-hylkiöt
 │       └── junk.ipynb
 ├── README.md
-├── requirements.txt       # Python-paketit joita sinä tarvitset
-├── requirements-test.txt  # Pytest - ÄLÄ KOSKE!
-├── pytest.ini             # Pytest - ÄLÄ KOSKE!
+├── pyproject.toml         # Projektin riippuvuudet - ÄLÄ KOSKE KÄSIN!
 ├── tester.Dockerfile      # Pytest - ÄLÄ KOSKE!
 └── docker-compose.yml     # Docker Compose Project
 ```
 
 ## Koodin suorittaminen
 
-Tarvitset virtuaaliympäristön. Suosi Pythonin versiota 3.11.x.
+Jos/kun haluat ajaa `ml`-paketin koodia lokaalisti, tarvitset `uv`-työkalun, joka luo sinulle virtuaaliympäristön. Kunhan `uv` on asennettu, on kirjaston käyttäminen helppoa.
 
 ```bash
 # Luo virtuaaliympäristö
-python -m venv .venv
-
-# Asenna tarvittavat paketit
-pip install -r requirements.txt
-
-# Asenna tämä paketti (ml/) paikallisesti
-# -e tarkoittaa "editable", jolloin koodiin tehdyt muutokset näkyvät heti
-#    ilman uutta installia.
-pip install -e .
+uv sync
 ```
 
-Paketti asennetaan, jotta se on käytettävissä mistä tahansa kansiosta. Tämä on hyödyllistä esimerkiksi `src/sandbox` -kansion Jupyter Notebook -tiedostojen kanssa. Voit käyttää `import ml` -komentoa missä tahansa kansiosta.
+Voit käyttää pakettia vain ja ainoastaan siten, että käytät `uv`-työkalun luomaa virtuaaliympäristöä. Tämä tarkoittaa, että sinun tulee aina käyttää `uv`-komentoa, kun haluat ajaa koodia. Esimerkiksi REPL toimisi näin:
 
-Huomaa, että saat lisätä tarvitsemiasi paketteja `requirements.txt`-tiedostoon. Aja tällöin `pip install -r requirements.txt` uudelleen. Älä kuitenkaan lisää mitään `requirements-test.txt`-tiedostoon - testien tulisi pärjätä ilman numpyä, scikit learnia ja muita kirjastoja, sillä tarkoituksena on luoda Python-natiiveja ratkaisija *"from scratch"*.
+```console
+$ uv run python
+>>> from ml.vector import Vector
+>>> v = Vector(1, 2, 3)
+>>> v
+Vector(1, 2, 3)
+>>> v + 2
+Vector(3, 4, 5)
+```
+
+Jos tarvitset lisäpaketteja, asenna ne `uv add <paketinnimi>` -komennolla. Muista, että `uv` luo sinulle virtuaaliympäristön, joten pakettien asennus tapahtuu vain siihen ympäristöön.
 
 ## Kuinka testata
 

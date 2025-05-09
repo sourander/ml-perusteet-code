@@ -24,3 +24,7 @@ dev = [
 # Avoid including the dev dependencies in the default group
 [tool.uv]
 default-groups = []
+
+[tool.pytest.ini_options]
+pythonpath = "."
+testpaths = ["tests"]
