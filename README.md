@@ -65,6 +65,8 @@ docker compose start tester
 docker compose down
 ```
 
+Kun olet ajanut yllä olevat komennot, voit tarkastella testien tuloksia selaimessa osoitteessa [http://localhost:5050/latest-report](http://localhost:5050/latest-report). Osa testeistä menee läpi automaattisesti, mutta valtaosa testeistä vaatii sinun kirjoittamaasi koodia, jotta algoritmit palauttavat odotetun tuloksen (ja testit menevät läpi).
+
 Muista dokumentoida työsi, kirjoittaa oppimispäiväkirjaa ja tehdä muut tehtävään liittyvät tehtävät. Ethän unohda myöskään versionhallintaa!
 
 ## Tarvittavat datasetit
